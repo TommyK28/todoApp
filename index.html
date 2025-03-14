@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>To do app</title>
+    </head>
+    <body>
+        <div class="todo-app">
+            <header class="todo-app__header">
+                <h1 class="todo-app__title">Your projects</h1>
+                <span class="todo-app__avatar">TK</span>
+            </header>
+
+            <div class="tasks__info tasks__info--gold">
+                <h2 class="task__title">Daily tasks</h2>
+                <div class="task__count"></div>
+                <div class="progress-bar"></div>
+            </div>
+
+            <div class="task__form">
+                <input type="text" placeholder="Add new task" />
+                <textarea
+                    id="taskDescription"
+                    placeholder="Description (optional)"
+                ></textarea>
+
+                <div class="task__group">
+                    <button
+                        data-action="createTask"
+                        class="btn primary btn--task-create"
+                    >
+                        Create
+                    </button>
+                    <button
+                        data-action="updateTask"
+                        class="btn btn--task-update primary"
+                    >
+                        Edit
+                    </button>
+                    <button data-action="cancelTask" class="btn secondary">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+            <div class="task__list"></div>
+
+            <button
+                data-action="addTask"
+                id="addTask"
+                class="btn btn--add-task"
+            >
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+
+        <script src="script.js"></script>
+        <script
+            src="https://kit.fontawesome.com/1242a55963.js"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

@@ -1,0 +1,318 @@
+/* Reset a základní styly */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Container */
+.todo-app {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 24px;
+    background: white;
+    min-height: 100vh;
+}
+
+/* Header */
+.todo-app__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.todo-app__title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.todo-app__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #367af6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Project Card */
+.todo-app .tasks__info {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 24px;
+    border-radius: 24px;
+    color: white;
+    position: relative;
+}
+
+.todo-app .tasks__info--blue {
+    background: linear-gradient(135deg, #4b91f7, #367af6);
+}
+
+.todo-app .tasks__info--gold {
+    background: linear-gradient(135deg, #ffb75e, #ed8f03, #9c27b0);
+}
+
+.todo-app .tasks__info .task__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.todo-app .task__count {
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.todo-app .task__count span {
+    font-weight: 600;
+}
+
+.todo-app .progress-bar {
+    position: relative;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin-top: 16px;
+}
+
+.todo-app .progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--progress-width, 0%);
+    height: 100%;
+    background: white;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+/* New Task Form */
+.todo-app .task__form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    display: none;
+    z-index: 10;
+}
+
+.todo-app .task__form.visible {
+    display: block;
+}
+
+.todo-app .task__form[data-task-edit="true"] .btn--task-create {
+    display: none;
+}
+
+.todo-app .task__form[data-task-edit="true"] .btn--task-update {
+    display: block;
+}
+
+.todo-app .task__form input,
+.todo-app .task__form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.todo-app .task__form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.todo-app .task__group {
+    display: flex;
+    gap: 8px;
+}
+
+/* Buttons */
+.todo-app .btn {
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s ease;
+}
+
+.todo-app .btn:hover {
+    opacity: 0.9;
+}
+
+.todo-app .btn.primary {
+    background: #000000;
+    color: white;
+}
+
+.todo-app .btn.secondary {
+    background: #f5f5f5;
+    color: #000000;
+}
+
+/* Task List */
+.todo-app .task__list {
+    margin-top: 24px;
+}
+
+.todo-app .task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 16px;
+}
+
+.todo-app .task .task__title {
+    font-size: 20px;
+    margin: 0;
+    pointer-events: auto;
+}
+
+.todo-app .task .task__description {
+    font-size: 14px;
+    pointer-events: auto;
+}
+
+.todo-app .task.completed {
+    opacity: 0.6;
+}
+
+.todo-app .task__checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+}
+
+.todo-app .task__checkbox.checked {
+    background: #367af6;
+    border-color: #367af6;
+}
+
+.todo-app .task__checkbox.checked::after {
+    content: "✓";
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+}
+
+.todo-app .task__checkbox:checked + label .task__title,
+.todo-app .task__checkbox:checked + label .task__description {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+.todo-app .task__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.todo-app .task__checkbox {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.todo-app .task__label {
+    width: inherit;
+    cursor: pointer;
+}
+
+.todo-app .task__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.todo-app .task__button {
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.todo-app .task__button:hover {
+    opacity: 1;
+}
+
+/* Floating Action Button */
+.todo-app .btn--add-task {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background: #000000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+.todo-app .btn--add-task:hover {
+    transform: scale(1.05);
+}
+
+.todo-app .btn--task {
+    display: block;
+}
+
+.todo-app .btn--task-update {
+    display: none;
+}
+
+.todo-app-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: block;
+    z-index: 1;
+}
+
+@media (max-width: 480px) {
+    .todo-app {
+        padding: 16px;
+    }
+}
